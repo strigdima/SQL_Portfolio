@@ -15,7 +15,7 @@ SELECT first_name, last_name, COALESCE(phone, 'NO PHONE') AS phone
 FROM customers
 ORDER BY 1;
 
- 
+************************************
 
 #2.Generating an Elite Customer Party Guest List using UNION
 
@@ -35,7 +35,7 @@ UNION
  WHERE d.city ='Los Angeles' AND d.state = 'CA'
 )
  
-
+************************************
 #3.Using the CASE WHEN Function to Get Regional Lists
 
 #The aim is to create a query that will map various values in a column to other values.
@@ -47,10 +47,7 @@ ELSE 'Other' END AS region
 FROM customers c
 ORDER BY 1;
 
- 
-
-
-
+************************************
 #4.Building a Sales Model Using SQL Techniques
 
 #Clean and prepare the data for analysis using SQL techniques.
@@ -67,18 +64,14 @@ FROM sales s
 INNER JOIN customers c ON s.customer_id = c.customer_id
 INNER JOIN products p ON p.product_id = s.product_id
 LEFT JOIN dealerships d ON s.dealership_id = d.dealership_id;
-
-
-
+************************************
 #5.Using Aggregate Functions to Analyze Data
 #Analyze the price of a products using different aggregate functions. 
 
 SELECT product_type, MIN(base_msrp), MAX(base_msrp), AVG(base_msrp), STDDEV(base_msrp)
 FROM products
 GROUP BY product_type;
-
-
-
+************************************
 #6.Calculate the Total Number of Customers + Gender in State Using GROUPING SETS
 
 SELECT state, gender, COUNT(*)
@@ -90,13 +83,12 @@ GROUP BY GROUPING SETS (
 )
 ORDER BY 1,2;
 
-
+************************************
 #7.Calculate the Median Price of the Products Table
 
 SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY base_msrp) AS median
 FROM products;
-
-
+************************************
 #8.Calculating and Displaying Data Using the HAVING Clause
 
 SELECT state, COUNT(*)
@@ -104,8 +96,7 @@ FROM customers
 GROUP BY state
 HAVING COUNT(*)>=1000
 ORDER BY state;
-
-
+************************************
 #9.Check How Much Missing Data is in Customers Table
 
 SELECT SUM(CASE WHEN state IS NOT NULL OR state IN ('') THEN 1 ELSE 0 END)::FLOAT/COUNT(*)
